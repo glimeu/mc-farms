@@ -1,19 +1,19 @@
-import styled, { DefaultTheme, keyframes } from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 
 interface BtnProps {
   primary?: boolean;
   theme: DefaultTheme;
 }
 
-interface SearchBoxProps {
-  outAnimation: boolean;
+interface ColorModeProps {
+  themeName: string;
 }
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  height: 100px;
   width: 100vw;
   max-width: calc(100vw - 17px);
   padding: 0 40px;
@@ -22,6 +22,20 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.colors.bgPrimary};
   color: ${({ theme }) => theme.colors.text};
   box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.25);
+
+  div.owner {
+    & > span {
+      color: ${({ theme }) => theme.colors.textSecundary};
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+
+      & > a {
+        text-decoration: none;
+        color: ${({ theme }) => theme.colors.primary};
+      }
+    }
+  }
 `;
 
 export const Title = styled.span`
@@ -64,6 +78,12 @@ export const NavTitle = styled.span`
 `;
 
 export const BtnGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  & > button:last-child {
+    margin-right: 0;
+  }
 `;
 
 export const Button = styled.button`
@@ -88,72 +108,31 @@ export const Button = styled.button`
   }
 `;
 
-const SearchAnimationIn = keyframes`
-  from {
-    width: 38px;
-  }
-  to {
-    width: 214px;
-  }
-`;
-
-const SearchAnimationOut = keyframes`
-  from {
-    width: 214px;
-  }
-  to {
-    width: 38px;
-  }
-`;
-
-export const SearchItem = styled(NavItem)`
+export const ColorModeBtn = styled(Button)`
   margin: 0;
-  padding: 0;
+  margin-top: 10px;
+
+  & > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & > span.light {
+    display: ${({ themeName }: ColorModeProps) => themeName === 'light' ? 'flex' : 'none'};
+  }
+
+  & > span.dark {
+    display: ${({ themeName }: ColorModeProps) => themeName === 'dark' ? 'flex' : 'none'};
+  }
 `;
 
-export const SearchBox = styled.div`
+export const LinkBtn = styled(Button)`
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 4px;
-  border-radius: 5px;
-
-  &.open {
-    border: solid 1px ${({ theme }) => theme.colors.primary};
-    animation: ${({ outAnimation }: SearchBoxProps) => outAnimation ? SearchAnimationOut : SearchAnimationIn} 0.2s;
-  }
-`;
-
-export const Search = styled.input`
-  background: none;
-  border: none;
-
-  display: none;
-  width: 100%;
-  max-width: 170px;
-  margin-right: 5px;
-
-  font-size: 15px;
-  /* color: ${({ theme }) => theme.colors.secundary}; */
-
-  &.open {
-    display: initial;
-  }
-`;
-
-export const SearchBtn = styled(Button)`
-  border-radius: 100%;
-  min-width: 30px;
-  height: 30px;
-  padding: 0;
-  margin: 0;
-
-  &.open {
-    background-color: ${({ theme }) => theme.colors.primary};
-    color: #fff;
-  }
-`;
-
-export const Spacer = styled.div`
-  height: 60px;
+  justify-content: center;
 `;
