@@ -2,12 +2,13 @@ export default {
   title: 'dark',
 
   colors: {
-    primary: '#222',
-    secundary: '#333',
+    primary: '#006aff',
+    secundary: '#005ad8',
 
-    background: '#141414',
+    bgPrimary: '#141414',
+    bgSecundary: '#1c1c1c',
 
     text: '#fff',
-    textSecundary: '#031b4e',
+    textSecundary: '#e0e0e0',
   },
 };

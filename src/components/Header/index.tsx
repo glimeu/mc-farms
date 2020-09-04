@@ -1,9 +1,5 @@
-import React, { useState, useRef }/* , { useContext } */ from 'react';
-// import Switch from 'react-switch';
-// import { ThemeContext } from 'styled-components';
+import React, { useState, useRef } from 'react';
 import { FiBox, FiSearch } from 'react-icons/fi';
-
-// import ToggleThemeContext from '../../utils/toggleThemeContext';
 
 import {
   Container,
@@ -27,8 +23,6 @@ interface SearchState {
 }
 
 const Header: React.FC = () => {
-  // const { colors, title } = useContext(ThemeContext);
-  // const toggleTheme = useContext(ToggleThemeContext);
   const [searchState, setSearchState] = useState<SearchState>({ isOpen: false, value: '', outAnimation: false });
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchBtnRef = useRef<HTMLButtonElement>(null);
@@ -98,17 +92,6 @@ const Header: React.FC = () => {
           <Button primary>Registrar</Button>
         </BtnGroup>
 
-        {/* <Switch
-        onChange={toggleTheme}
-        checked={title === 'dark'}
-        checkedIcon={false}
-        uncheckedIcon={false}
-        height={20}
-        width={50}
-        handleDiameter={20}
-        offColor={colors.secundary}
-        onColor={colors.secundary}
-      /> */}
       </Container>
       <Spacer />
     </>

@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const Section = styled.section`
   width: 100vw;
+  max-width: 100vw;
   padding: 0 40px;
 
   display: flex;
@@ -48,7 +49,7 @@ export const FarmLabel = styled.li`
     font-size: 20px;
     font-family: Ubuntu, sans-serif;
     font-weight: 600;
-    background-color: ${({ theme }) => theme.colors.background};
+    background-color: ${({ theme }) => theme.colors.bgSecundary};
     z-index: 1;
     padding: 0 5px;
     color: ${({ theme }) => theme.colors.textSecundary};
@@ -103,7 +104,7 @@ export const FarmItem = styled.li`
   width: 192px;
   
   border-radius: 5px;
-  background-color: #fff;
+  background-color: ${({theme}) => theme.colors.bgPrimary};
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 
   &.loading {

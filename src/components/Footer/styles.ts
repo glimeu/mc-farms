@@ -17,14 +17,11 @@ export const Container = styled.div`
   width: 100vw;
   max-width: calc(100vw - 17px);
   padding: 0 40px;
-  z-index: 100;
-  position: fixed;
-  top: 0;
-  left: 0;
+  margin-top: 40px;
 
   background: ${({ theme }) => theme.colors.bgPrimary};
   color: ${({ theme }) => theme.colors.text};
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.25);
 `;
 
 export const Title = styled.span`
@@ -159,5 +156,4 @@ export const SearchBtn = styled(Button)`
 
 export const Spacer = styled.div`
   height: 60px;
-  max-width: 100vw;
 `;

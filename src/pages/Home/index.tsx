@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiStar } from 'react-icons/fi';
 
 import Header from '../../components/Header/index';
+import Footer from '../../components/Footer/index';
 
 import { farms } from '../../utils/defaultValues';
 
@@ -196,6 +197,7 @@ const Home: React.FC = () => {
           </FarmList>
         </Section>
       </Container>
+      <Footer />
     </>
   );
 }
