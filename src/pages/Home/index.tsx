@@ -1,69 +1,199 @@
-import React, { useRef } from 'react';
-import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { FiStar } from 'react-icons/fi';
 
 import Header from '../../components/Header/index';
 
-import { News } from '../../utils/defaultValues';
+import { farms } from '../../utils/defaultValues';
 
 import {
   Container,
   Section,
+  PTitle,
+  PDescription,
+  FarmLabel,
+  FarmList,
+  FarmItem,
+  FarmImage,
+  FarmTitle,
+  FarmAuthor,
+  FarmVersion,
+  FarmRate,
 } from './styles';
 
+interface StarsProps {
+  size: number;
+}
+
+interface FarmData {
+  id: string;
+  image: string;
+  title: string;
+  author: string;
+  version: string;
+  rate: number;
+}
+
+interface HomeData {
+  latest: FarmData[];
+  best_rated: FarmData[];
+  last_mc_version: FarmData[];
+  isLoading: boolean;
+}
+
+const genStars = (stars: number) => {
+  const len = Math.floor(stars);
+  const result = [];
+
+  for (let i = 0; i < 5; i++) {
+    result.push(({ size }: StarsProps) => (<FiStar size={size} className={i < len ? 'yellow' : ''} />));
+  }
+
+  return result;
+}
+
+const LoadingFarmItem: React.FC = () => {
+  return (
+    <FarmItem className='loading'>
+      <span className='image shimmer'></span>
+      <span className='title shimmer'></span>
+      <span className='author shimmer'></span>
+      <span className='version shimmer'></span>
+      <span className='rate shimmer'></span>
+    </FarmItem>
+  )
+}
+
 const Home: React.FC = () => {
-  const newsRef = useRef<HTMLUListElement>(null);
+  const [homeData, setHomeData] = useState<HomeData>({ isLoading: true } as HomeData);
 
-  function handleNewsToLeft() {
-    const newsLen = News.length;
-    const currentNews = (newsRef.current!.scrollLeft / window.innerWidth) + 1;
-
-    if (currentNews - 1 <= 0) return newsRef.current!.scrollLeft = window.innerWidth * newsLen;
-
-    newsRef.current!.scrollLeft -= window.innerWidth;
-  }
-
-  function handleNewsToRight() {
-    const newsLen = News.length;
-    const currentNews = (newsRef.current!.scrollLeft / window.innerWidth) + 1;
-
-    if (currentNews + 1 > newsLen) return newsRef.current!.scrollLeft = 0;
-
-    newsRef.current!.scrollLeft += window.innerWidth;
-  }
+  useEffect(() => {
+    setTimeout(() => {
+      setHomeData({
+        best_rated: farms,
+        latest: farms,
+        last_mc_version: farms,
+        isLoading: false,
+      });
+    }, 1500);
+  }, [])
 
   return (
     <>
       <Header />
       <Container>
-        <Section className='news' ref={newsRef}>
-          <ul>
-            {News.map(data => (
-              <li key={data.title}>
-                <div className='image'>
-                  <img src={data.background} alt={data.title} />
-                  <div className='news-img-shadow' />
-                </div>
-                <div className='text'>
-                  <h3>{data.title}</h3>
-                  <p>{data.description}</p>
-                  <Link to={data.link}>
-                    <FiArrowRight size={20} />
-                    Ver
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <FiArrowLeft
-            size={32}
-            onClick={handleNewsToLeft}
-          />
-          <FiArrowRight
-            size={32}
-            className='right'
-            onClick={handleNewsToRight}
-          />
+        <Section>
+          <PTitle>MCFarms</PTitle>
+          <PDescription>Estamos aqui para ajudar Jogadores e Criadores de farms. Para quem quer encontrar algo funcional de maneira eficiente e para quem quer divulgar seu trabalho!</PDescription>
+        </Section>
+        <Section>
+          <FarmList>
+            <FarmLabel>
+              <span>Adicionadas Recentemente</span>
+            </FarmLabel>
+            {homeData.isLoading ?
+              <>
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+              </>
+              :
+              <>
+                {farms.map((farm, index) => {
+                  return index >= 7 ?
+                    <></>
+                    :
+                    <FarmItem key={farm.id}>
+                      <FarmImage src={farm.image} alt='Farm' />
+                      <FarmTitle>{farm.title}</FarmTitle>
+                      <FarmAuthor><span>Criador:</span> {farm.author}</FarmAuthor>
+                      <FarmVersion><span>Versão:</span> {farm.version}</FarmVersion>
+                      <FarmRate>
+                        {genStars(farm.rate).map((Star, index) => (
+                          <Star size={16} key={index} />
+                        ))}
+                      </FarmRate>
+                    </FarmItem>
+
+                })
+                }
+              </>
+            }
+          </FarmList>
+          <FarmList>
+            <FarmLabel>
+              <span>Melhores Avaliados</span>
+            </FarmLabel>
+            {homeData.isLoading ?
+              <>
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+              </>
+              :
+              <>
+                {farms.map((farm, index) => {
+                  return index >= 7 ?
+                    <></>
+                    :
+                    <FarmItem key={farm.id}>
+                      <FarmImage src={farm.image} alt='Farm' />
+                      <FarmTitle>{farm.title}</FarmTitle>
+                      <FarmAuthor><span>Criador:</span> {farm.author}</FarmAuthor>
+                      <FarmVersion><span>Versão:</span> {farm.version}</FarmVersion>
+                      <FarmRate>
+                        {genStars(farm.rate).map((Star, index) => (
+                          <Star size={16} key={index} />
+                        ))}
+                      </FarmRate>
+                    </FarmItem>
+
+                })
+                }
+              </>
+            }
+          </FarmList>
+          <FarmList>
+            <FarmLabel>
+              <span>Para Ultima Versão Do Minecraft</span>
+            </FarmLabel>
+            {homeData.isLoading ?
+              <>
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+                <LoadingFarmItem />
+              </>
+              :
+              <>
+                {farms.map((farm, index) => {
+                  return index >= 7 ?
+                    <></>
+                    :
+                    <FarmItem key={farm.id}>
+                      <FarmImage src={farm.image} alt='Farm' />
+                      <FarmTitle>{farm.title}</FarmTitle>
+                      <FarmAuthor><span>Criador:</span> {farm.author}</FarmAuthor>
+                      <FarmVersion><span>Versão:</span> {farm.version}</FarmVersion>
+                      <FarmRate>
+                        {genStars(farm.rate).map((Star, index) => (
+                          <Star size={16} key={index} />
+                        ))}
+                      </FarmRate>
+                    </FarmItem>
+
+                })
+                }
+              </>
+            }
+          </FarmList>
         </Section>
       </Container>
     </>

@@ -18,3 +18,54 @@ export const News = [
     background: 'https://updatecrazy.com/wp-content/uploads/2018/09/Minecraft-176-Update-Aquatic-patch-notes-1280x720.jpg'
   },
 ]
+
+export const farms = [
+  {
+    id: '1',
+    image: 'https://img.ibxk.com.br/2018/11/programas/7977522104256994.png',
+    title: 'Farm de Minecraft',
+    author: 'Miguel MxD_',
+    version: '1.16.2',
+    rate: 5,
+  },
+  {
+    id: '2',
+    image: 'https://img.ibxk.com.br/2018/11/programas/7977522104256994.png',
+    title: 'Farm de Minecraft',
+    author: 'Miguel MxD_',
+    version: '1.16.2',
+    rate: 5,
+  },
+  {
+    id: '3',
+    image: 'https://img.ibxk.com.br/2018/11/programas/7977522104256994.png',
+    title: 'Farm de Minecraft',
+    author: 'Miguel MxD_',
+    version: '1.16.2',
+    rate: 5,
+  },
+  {
+    id: '4',
+    image: 'https://img.ibxk.com.br/2018/11/programas/7977522104256994.png',
+    title: 'Farm de Minecraft',
+    author: 'Miguel MxD_',
+    version: '1.16.2',
+    rate: 5,
+  },
+  {
+    id: '5',
+    image: 'https://img.ibxk.com.br/2018/11/programas/7977522104256994.png',
+    title: 'Farm de Minecraft',
+    author: 'Miguel MxD_',
+    version: '1.16.2',
+    rate: 5,
+  },
+  {
+    id: '6',
+    image: 'https://img.ibxk.com.br/2018/11/programas/7977522104256994.png',
+    title: 'Farm de Minecraft',
+    author: 'Miguel MxD_',
+    version: '1.16.2',
+    rate: 3,
+  },
+]

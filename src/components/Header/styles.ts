@@ -17,7 +17,9 @@ export const Container = styled.div`
   width: 100vw;
   padding: 0 40px;
   z-index: 100;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   background: ${({ theme }) => theme.title === 'light' ? '#fff' : '#000'};
   color: ${({ theme }) => theme.colors.text};

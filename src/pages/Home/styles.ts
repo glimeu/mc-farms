@@ -1,123 +1,207 @@
-import styled from 'styled-components';
-import hexToRgba from 'hex-to-rgba';
-import { shade } from 'polished';
+import styled, { keyframes } from 'styled-components';
+// import hexToRgba from 'hex-to-rgba';
+// import { shade } from 'polished';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 `;
 
 export const Section = styled.section`
+  width: 100vw;
+  padding: 0 40px;
 
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
-  &.news {
-    height: 450px;
-    width: 100vw;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25); */
+export const PTitle = styled.h1`
+  font-size: 32px;
 
-    &::-webkit-scrollbar {
-      display: none;
+  margin-bottom: 20px;
+  margin-top: 40px;
+`;
+
+export const PDescription = styled.p`
+  font-size: 18px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.textSecundary};
+
+  max-width: 65vw;
+`;
+
+export const FarmLabel = styled.li`
+  position: absolute;
+  top: -35px;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+
+  list-style: none;
+
+  & > span {
+    margin-left: 20px;
+    font-size: 20px;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 600;
+    background-color: ${({ theme }) => theme.colors.background};
+    z-index: 1;
+    padding: 0 5px;
+    color: ${({ theme }) => theme.colors.textSecundary};
+  }
+
+  &:before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    position: absolute;
+    top: 12px;
+    z-index: 0;
+  }
+`;
+
+const Shimmer = keyframes`
+  0% {
+    background-position: 0% 0%;
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+    background-position: -135% 0%;
+  }
+  100% {
+    opacity: 0.5;
+  }  
+`;
+
+export const FarmList = styled.ul`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 85px;
+  width: 100%;
+`;
+
+export const FarmItem = styled.li`
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  margin: 0 10px;
+  padding: 10px;
+  width: 192px;
+  
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+
+  &.loading {
+    height: 258px;
+    
+    & > span.image {
+      border-radius: 5px;
+
+      width: 148px;
+      height: 148px;
+      margin: 0 auto;
+      margin-bottom: 7px;
     }
 
-    & > svg {
-      position: absolute;
-      top: calc(((450px / 2) - 36px) + 60px);
-      margin: 20px;
-      color: ${({ theme }) => theme.colors.primary};
-      cursor: pointer;
-      background-color: ${({ theme }) => hexToRgba(shade(0.15, theme.colors.background), 0.5)};
-      border-radius: 100%;
-
-      &.right {
-        right: 0;
-      }
+    & > span.title {
+      font-size: 16px;
+      margin: 0 auto;
+      margin-bottom: 5px;
+      height: 22px;
+      width: 65%;
     }
 
-    & > ul {
-      display: flex;
-      flex-direction: row;
+    & > span.author {
+      height: 16px;
+      margin-bottom: 2px;
+      width: 100%;
+    }
 
-      height: 100%;
+    & > span.version {
+      height: 16px;
+      margin-bottom: 5px;
+      width: 100%;
+    }
 
-      & > li {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
+    & > span.rate {
+      height: 16px;
+      width: 100%;
+    }
 
-        div.image, div.text {
-          width: 50vw;
-        }
-
-        & > div.image {
-          position: relative;
-
-          & > img {
-            width: 50vw;
-            height: 100%;
-          }
-
-          & > div.news-img-shadow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0;
-
-            width: 100%;
-            height: 100%;
-
-            background: linear-gradient(90deg, ${({ theme }) => hexToRgba(theme.colors.background, 0)} 0%, ${({ theme }) => hexToRgba(theme.colors.background, 0)} 73.96%, ${({ theme }) => (theme.colors.background)} 100%);
-          }
-        }
-
-        & > div.text {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-
-          padding: 0 30px;
-          padding-right: 55px;
-
-          & > h3 {
-            font-size: 32px;
-            font-family: Unbuntu, sans-serif;
-          }
-
-          & > p {
-            font-size: 18px;
-            font-family: Unbuntu, sans-serif;
-            margin-top: 5px;
-            margin-bottom: 30px;
-          }
-
-          & > a {
-            display: flex;
-            padding: 4px;
-            padding-right: 6px;
-            font-size: 18px;
-            text-decoration: none;
-            align-items: center;
-            color: ${({ theme }) => theme.colors.primary};
-            border: solid 1px ${({ theme }) => theme.colors.primary};
-            border-radius: 5px;
-
-            transition: 0.2s;
-
-            &:hover {
-              background: ${({ theme }) => theme.colors.secundary};
-              color: #fff;
-            }
-          }
-        }
-      }
+    & > span.shimmer {
+      /* background-image: linear-gradient(
+        -90deg,
+        #e7edf1 0%,
+        #f8f8f8 50%,
+        #e7edf1 100%,
+      );
+      background-size: 400% 400%; */
+      background-color: #e7edf1;
+      animation: ${Shimmer} 1.2s ease-in-out infinite;
+      border-radius: 5px;
     }
   }
 `;
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
+export const FarmImage = styled.img`
+  border-radius: 5px;
+
+  width: 148px;
+  height: 148px;
+  margin: 0 auto;
+  margin-bottom: 7px;
+`;
+
+export const FarmTitle = styled.h3`
+  font-size: 16px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+`;
+
+export const FarmAuthor = styled.h4`
+  font-size: 14px;
+  font-weight: 300;
+  color: ${({ theme }) => theme.colors.textSecundary};
+
+  & > span {
+    font-weight: 600;
+  }
+`;
+
+export const FarmVersion = styled.span`
+  font-size: 14px;
+  font-weight: 300;
+  color: ${({ theme }) => theme.colors.textSecundary};
+
+  & > span {
+    font-weight: 600;
+  }
+`;
+
+export const FarmRate = styled.div`
+  margin-top: 5px;
+
+  & > svg {
+    display: none;
+    color: ${({ theme }) => theme.colors.primary};
+
+    &.yellow {
+      display: inline;
+    }
+  }
 `;
