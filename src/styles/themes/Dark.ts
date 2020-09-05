@@ -8,7 +8,7 @@ export default {
     bgPrimary: '#141414',
     bgSecundary: '#1c1c1c',
 
-    text: '#fff',
+    text: '#f5f5f5',
     textSecundary: '#e0e0e0',
   },
 };

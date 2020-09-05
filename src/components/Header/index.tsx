@@ -94,8 +94,8 @@ const Header: React.FC = () => {
         </NavGroup>
 
         <BtnGroup>
-          <Button>Entrar</Button>
-          <Button primary>Registrar</Button>
+          <Button onClick={() => history.push('/login')}>Entrar</Button>
+          <Button onClick={() => history.push('/register')} primary>Registrar</Button>
         </BtnGroup>
 
       </Container>
