@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FiBox, FiSearch } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 
 import {
   Container,
@@ -26,6 +27,11 @@ const Header: React.FC = () => {
   const [searchState, setSearchState] = useState<SearchState>({ isOpen: false, value: '', outAnimation: false });
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchBtnRef = useRef<HTMLButtonElement>(null);
+  const history = useHistory();
+
+  function handleNavigation(to: string) {
+    history.push(to);
+  }
 
   function handleSearch() {
     if (searchState.isOpen) {
@@ -43,16 +49,16 @@ const Header: React.FC = () => {
       <Container>
         <Title><FiBox size={30} /> MCFarms</Title>
         <NavGroup>
-          <NavItem>
+          <NavItem onClick={() => handleNavigation('/')}>
             <NavTitle>Home</NavTitle>
           </NavItem>
-          <NavItem>
+          <NavItem onClick={() => handleNavigation('/latest')}>
             <NavTitle>Recentes</NavTitle>
           </NavItem>
-          <NavItem>
+          <NavItem onClick={() => handleNavigation('/send-farm')}>
             <NavTitle>Enviar</NavTitle>
           </NavItem>
-          <NavItem>
+          <NavItem onClick={() => handleNavigation('/to-help')}>
             <NavTitle>Ajudar</NavTitle>
           </NavItem>
           <SearchItem>

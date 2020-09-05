@@ -14,8 +14,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  width: 100vw;
-  max-width: calc(100vw - 17px);
+  width: 100%;
   padding: 0 40px;
   z-index: 100;
   position: fixed;
@@ -137,7 +136,7 @@ export const Search = styled.input`
   margin-right: 5px;
 
   font-size: 15px;
-  /* color: ${({ theme }) => theme.colors.secundary}; */
+  color: ${({ theme }) => theme.colors.text};
 
   &.open {
     display: initial;
@@ -159,5 +158,5 @@ export const SearchBtn = styled(Button)`
 
 export const Spacer = styled.div`
   height: 60px;
-  max-width: 100vw;
+  width: 100%;
 `;

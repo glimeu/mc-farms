@@ -13,5 +13,7 @@ export default createGlobalStyle`
     font-size: 14px;
     color: ${props => props.theme.colors.text};
     font-family: Roboto, sans-serif;
+    position: relative;
+    min-height: 100vh;
   }
 `;

@@ -14,10 +14,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 100px;
-  width: 100vw;
-  max-width: calc(100vw - 17px);
+  width: 100%;
   padding: 0 40px;
-  margin-top: 40px;
+  position: absolute;
+  bottom: 0;
 
   background: ${({ theme }) => theme.colors.bgPrimary};
   color: ${({ theme }) => theme.colors.text};
@@ -135,4 +135,10 @@ export const LinkBtn = styled(Button)`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const Spacer = styled.div`
+  height: 100px;
+  width: 100%;
+  margin-top: 40px;
 `;

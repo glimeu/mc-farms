@@ -11,6 +11,7 @@ import {
   BtnGroup,
   ColorModeBtn,
   LinkBtn,
+  Spacer,
 } from './styles';
 
 const Footer: React.FC = () => {
@@ -46,6 +47,7 @@ const Footer: React.FC = () => {
           <LinkBtn><FaGithub size={18} /></LinkBtn>
         </BtnGroup>
       </Container>
+      <Spacer />
     </>
   );
 };
