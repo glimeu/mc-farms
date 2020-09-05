@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Latest from './pages/Latest';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import NotFound from './pages/NotFound'
 
 const Routes: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const Routes: React.FC = () => {
         <Route path='/latest' component={Latest} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+        <Route path='/*' component={NotFound} />
       </Switch>
     </BrowserRouter>
   );

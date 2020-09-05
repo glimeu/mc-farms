@@ -75,6 +75,8 @@ export const Input = styled.input`
 
 export const ButtonGroup = styled.div`
   margin: 10px 0;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const StyledButton = styled(Button)`

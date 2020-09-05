@@ -20,6 +20,9 @@ export const StyledButton = styled.button`
   transition: all 0.2s;
   cursor: pointer;
 
+  display: flex;
+  align-items: center;
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.secundary};
     color: #FFF;
